@@ -1,9 +1,9 @@
-//import java.lang.*;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
-import edu.princeton.cs.algs4.StdRandom;
+
 
 public class Deque<Item> implements Iterable<Item> {
     
@@ -60,6 +60,7 @@ public class Deque<Item> implements Iterable<Item> {
             Node lastLast = last;
             last = new Node();
             last.item = item;
+            lastLast.next = last;
             last.before = lastLast;
             last.before.next = last;
             last.next = null;
