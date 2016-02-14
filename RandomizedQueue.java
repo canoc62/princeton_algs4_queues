@@ -90,10 +90,12 @@ public class RandomizedQueue<Item> implements Iterable<Item> {
         
         private ArrayIterator() {
         
-            resize(N);
-            copy = (Item[]) new Object[items.length];
-            for (int i = 0; i < items.length; i++) {
-                copy[i] = items[i];
+            //resize(N);
+            copy = (Item[]) new Object[N];
+            for (int i = 0; i < tail; i++) {
+                if(items[i] != null) { 
+                    copy[i] = items[i];
+                }
             }
             shuffleArray(copy);
         }
