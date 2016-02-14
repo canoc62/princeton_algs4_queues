@@ -8,9 +8,9 @@ import edu.princeton.cs.algs4.StdOut;
 public class Deque<Item> implements Iterable<Item> {
     
     private class Node {
-        Item item;
-        Node before;
-        Node next;  
+        private Item item;
+        private Node before;
+        private Node next;  
     }
     
     private Node first;
@@ -38,10 +38,10 @@ public class Deque<Item> implements Iterable<Item> {
         Node lastFirst = first;
         first = new Node();
         first.item = item;
-        first.before = null;
+        first.before = null;///
         first.next = lastFirst;
-        if (first.next != null) {
-            first.next.before = first;
+        if (lastFirst != null) {
+            lastFirst.before = first;
         }
         length++;
         if (length == 1) {
@@ -62,7 +62,7 @@ public class Deque<Item> implements Iterable<Item> {
             last.item = item;
             lastLast.next = last;
             last.before = lastLast;
-            last.before.next = last;
+            //last.before.next = last;
             last.next = null;
             length++;
         }
@@ -75,8 +75,15 @@ public class Deque<Item> implements Iterable<Item> {
         }
         
         Item item = first.item;
+        
+        
         first = first.next;
-        first.before = null;
+        
+        if (first != null) {
+            first.before = null;
+        }
+        
+        
         length--;
         return item;
        
@@ -88,10 +95,15 @@ public class Deque<Item> implements Iterable<Item> {
         }
        
         Item item = last.item;
+       
+        
         last = last.before;
+        
         if (last != null) {
             last.next = null;
         }
+        
+        
         length--;
         return item; 
       
@@ -127,14 +139,28 @@ public class Deque<Item> implements Iterable<Item> {
         throw new java.lang.NullPointerException();
     }
     
-    private static void throwNoElementException() {
+    private void throwNoElementException() {
         throw new java.util.NoSuchElementException();
     }
     
     public static void main(String[] args) {
         Deque<Integer> integers = new Deque<Integer>();
         
+        /*
         integers.addFirst(1);
+        integers.removeFirst();
+        System.out.println("Is integers deque empty? " + integers.isEmpty());
+        */
+        integers.addFirst(1);
+          integers.addFirst(2);
+          integers.removeFirst();   //==> 2
+          integers.removeFirst();   //==> 1
+          integers.addLast(5);
+          integers.removeFirst(); // ==> 5
+          integers.addFirst(7);
+          integers.removeLast() ;   //==> 7
+          System.out.println("Is integers deque empty? " + integers.isEmpty());
+        /*integers.addFirst(1);
         integers.addFirst(2);
         integers.addFirst(3);
         
@@ -166,7 +192,7 @@ public class Deque<Item> implements Iterable<Item> {
         
         while (integersIterator.hasNext()) {
             System.out.println(integersIterator.next());
-        }
+        }*/
             
     }
     
