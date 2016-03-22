@@ -1,9 +1,4 @@
-
 import java.util.Iterator;
-import java.util.NoSuchElementException;
-import edu.princeton.cs.algs4.StdIn;
-import edu.princeton.cs.algs4.StdOut;
-
 
 public class Deque<Item> implements Iterable<Item> {
     
@@ -38,7 +33,7 @@ public class Deque<Item> implements Iterable<Item> {
         Node lastFirst = first;
         first = new Node();
         first.item = item;
-        first.before = null;///
+        first.before = null;
         first.next = lastFirst;
         if (lastFirst != null) {
             lastFirst.before = first;
@@ -46,7 +41,6 @@ public class Deque<Item> implements Iterable<Item> {
         length++;
         if (length == 1) {
             last = first;
-         //   System.out.println("last: " + last.item);
         }
     }
     
@@ -63,7 +57,6 @@ public class Deque<Item> implements Iterable<Item> {
             last.item = item;
             lastLast.next = last;
             last.before = lastLast;
-            //last.before.next = last;
             last.next = null;
             length++;
         }
@@ -75,19 +68,19 @@ public class Deque<Item> implements Iterable<Item> {
             throwNoElementException(); 
         }
         
+        if (length == 1) last = null;
+        
         Item item = first.item;
         
         Node nextFirst = first.next; 
-        //first = first.next;
         first = null;
         first = nextFirst;
-       // firstCopy = null;
-        nextFirst = null;//////if worse grade try delete this first
+        nextFirst = null;
+        
         if (first != null) {
             first.before = null;
         }
-        
-        
+    
         length--;
         return item;
        
@@ -99,23 +92,21 @@ public class Deque<Item> implements Iterable<Item> {
         }
         
         if (length == 1) {
+            last = null;
             return removeFirst();
         }
        
         Item item = last.item;
-       
-        //Node lastCopy = last;// 
+      
         Node nextLast = last.before;
-        //last = last.before;
         last = null;
         last = nextLast;
-        nextLast = null;// if worse grade try delete this first
-        //lastCopy = null; // 
+        nextLast = null;
+      
         if (last != null) {
             last.next = null;
         }
-        
-        
+       
         length--;
         return item; 
       
