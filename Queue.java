@@ -3,7 +3,7 @@ import java.util.NoSuchElementException;
 import edu.princeton.cs.algs4.StdIn;
 import edu.princeton.cs.algs4.StdOut;
 import edu.princeton.cs.algs4.StdRandom;
-import java.util.Arrays; //delete later
+import java.util.Arrays; 
 
 public class Queue<Item> implements Iterable<Item> {
     
@@ -14,8 +14,8 @@ public class Queue<Item> implements Iterable<Item> {
     
     public Queue() { 
         N = 0;
-        head = N; //
-        tail = N; //
+        head = N; 
+        tail = N; 
         items = (Item[]) new Object[1];
     }
     
